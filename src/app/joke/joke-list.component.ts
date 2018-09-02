@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Joke } from "./models/Joke";
 
 @Component({
     selector: 'joke-list',
@@ -6,22 +7,25 @@ import { Component } from "@angular/core";
 })
 
 export class JokeListComponent {
-    jokes: Object[];
+    jokes: Joke[];
 
     constructor() {
         this.jokes = [
-            {
-                setup: 'Hello',
-                punchline: 'World'
-            },
-            {
-                setup: 'Hello World',
-                punchline: 'From another world'
-            },
-            {
-                setup: 'Hello Mars',
-                punchline: 'From Jupiter'
-            }
+            new Joke('Hello', 'World'),
+            new Joke('Hello World', 'From another world'),
+            new Joke('Hello Mars', 'From Jupiter')
         ]
+    }
+
+    addJoke(joke) {
+        this.jokes.unshift(joke);
+    }
+
+    deleteJoke(joke) {
+        let indexOfJoke = this.jokes.indexOf(joke);
+
+        if(indexOfJoke !== -1) {
+            this.jokes.splice(indexOfJoke, 1);
+        }
     }
 }

@@ -1,11 +1,11 @@
-
 <div class="row">
-    <div class="col-md-4" *ngFor="let joke of jokes">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">{{joke.setup}}</h4>
-                <p class="card-text">{{joke.punchline}}</p>
-            </div>
-        </div>
+    <div class="col-md-6">
+        <joke-form (jokeCreated)="addJoke($event)"></joke-form>
     </div>
+</div>
+<div class="row">
+    <joke class="col-md-4" 
+        *ngFor="let joke of jokes" 
+        [joke]="joke"
+        (jokeDeleted)="deleteJoke($event)"></joke>
 </div>

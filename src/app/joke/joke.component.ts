@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Joke } from "./models/Joke";
 
 @Component({
     selector: 'joke',
@@ -6,11 +7,10 @@ import { Component } from "@angular/core";
 })
 
 export class JokeComponent {
-    setup: string;
-    punchline: string;
+    @Input() joke: Joke;
+    @Output() jokeDeleted = new EventEmitter<Joke>();
 
-    constructor() {
-        this.setup = 'Hello';
-        this.punchline = 'World';
+    deleteJoke() {
+        this.jokeDeleted.emit(this.joke);
     }
 }
